@@ -1,9 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 85567,
-  "expoServerNgrokUrl": "https://95-2kw.veeklee92.beveat.exp.direct",
-  "packagerNgrokUrl": "https://packager.95-2kw.veeklee92.beveat.exp.direct",
-  "ngrokPid": 85579
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
 }
