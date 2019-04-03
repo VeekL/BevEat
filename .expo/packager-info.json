@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19003,
+  "packagerPid": 95035,
+  "expoServerNgrokUrl": "https://fs-c3r.anonymous.beveat.exp.direct",
+  "packagerNgrokUrl": "https://packager.fs-c3r.anonymous.beveat.exp.direct",
+  "ngrokPid": 95068,
   "webpackServerPort": null
 }

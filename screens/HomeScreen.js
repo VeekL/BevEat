@@ -7,15 +7,22 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Vibration,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
+import { Facebook } from 'expo';
+import { Haptic } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  constructor(props){
+     super(props);
+     this._changeLocale = this._changeLocale.bind(this);
+  }
 
   render() {
     return (
@@ -31,32 +38,47 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-             </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
+          <View style={styles.bevEatAppContainer}>
+            {this._BevEatApp()}
           </View>
-        </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
+ 
+          <TouchableOpacity onPress={this._handleOnClick} accessibilityLabel="Login with Facebook"
+>
+      	    <Image
+        	style={styles.button}
+        	source={require('../assets/images/Facebook.jpg')}style={styles.loginImage}
+      	    />
+    	  </TouchableOpacity>
+        
+          <TouchableOpacity onPress={this._changeLocale} accessibilityLabel="Sign in with Google">
+       	    <View>
+		<Image
+        	style={styles.button}
+        	source={require('../assets/images/Google.jpg')}style={styles.loginImage}
+                />
+	    </View>
+    	  </TouchableOpacity>
+
+       </ScrollView>
+
+     </View>
     );
   }
+  
+  _changeLocale(key){
+     this.props.screenProps.changeLocale(key);
+     this.props.navigation.navigate('Links');
+  }
+  _handleLearnMorePress = () => {
+    WebBrowser.openBrowserAsync('http://www.beveat.com/');
+  };
 
-  _maybeRenderDevelopmentModeWarning() {
+  _BevEatApp() {
     if (__DEV__) {
       const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          BevEat Web Version
+        <Text onPress={this._handleLearnMorePress} style={styles.descriptionText}>
+          BevEat App
         </Text>
       );
 
@@ -65,24 +87,7 @@ export default class HomeScreen extends React.Component {
           {learnMoreButton}
         </Text>
       );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('http://www.beveat.com/');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
+    }  }
 }
 
 const styles = StyleSheet.create({
@@ -97,24 +102,35 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     textAlign: 'center',
   },
+  button: {
+    alignContent: 'stretch',
+  },
   contentContainer: {
     paddingTop: 30,
+    paddingBottom:100,
   },
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: 110,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 280,
+    height: 280,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  loginImage: {
+    alignItems: 'center',
+    marginLeft:15,
+    marginTop:10,
+    marginBottom:10,
+  },
+
+  bevEatAppContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
+    marginBottom: 60,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -133,43 +149,15 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: 'center',
   },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
   navigationFilename: {
     marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
   },
   helpLink: {
     paddingVertical: 15,
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  descriptionText: {
+    fontSize: 20,
+    fontWeight: 'bold', 
+    color: '#000000',
   },
 });
