@@ -4,11 +4,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import SelectionsScreen from '../screens/SelectionsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  Selections: SelectionsScreen,
+  Settings: SettingsScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -25,11 +27,11 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const SelectionsStack = createStackNavigator({
+  Selections: SelectionsScreen,
 });
 
-LinksStack.navigationOptions = {
+SelectionsStack.navigationOptions = {
   tabBarLabel: 'E-Wallet',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -55,6 +57,6 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  SelectionsStack,
   SettingsStack,
 });

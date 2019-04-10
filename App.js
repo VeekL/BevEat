@@ -1,4 +1,6 @@
 import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { HomeScreen, SelectionsScreen, SettingsScreen } from './screens';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';

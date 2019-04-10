@@ -11,6 +11,7 @@ import {
   Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { Keyboard, TextInput, AppRegistry } from 'react-native';
 import { Facebook } from 'expo';
 import { Haptic } from 'expo';
 import { MonoText } from '../components/StyledText';
@@ -22,12 +23,13 @@ export default class HomeScreen extends React.Component {
   constructor(props){
      super(props);
      this._changeLocale = this._changeLocale.bind(this);
+     this.state = { text: 'Useless Placeholder' };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+    
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -41,10 +43,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.bevEatAppContainer}>
             {this._BevEatApp()}
           </View>
-
- 
-          <TouchableOpacity onPress={this._handleOnClick} accessibilityLabel="Login with Facebook"
->
+	<TouchableOpacity>
       	    <Image
         	style={styles.button}
         	source={require('../assets/images/Facebook.jpg')}style={styles.loginImage}
@@ -59,13 +58,22 @@ export default class HomeScreen extends React.Component {
                 />
 	    </View>
     	  </TouchableOpacity>
+<TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+      />
 
-       </ScrollView>
+    
 
      </View>
     );
   }
   
+  _componentDidMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+  }
   _changeLocale(key){
      this.props.screenProps.changeLocale(key);
      this.props.navigation.navigate('Links');
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
   bevEatAppContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
-    marginBottom: 60,
+    marginBottom:100,
   },
   homeScreenFilename: {
     marginVertical: 7,
