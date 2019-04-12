@@ -50,7 +50,7 @@ export default class HomeScreen extends React.Component {
       	    />
     	  </TouchableOpacity>
         
-          <TouchableOpacity onPress={this._changeLocale} accessibilityLabel="Sign in with Google">
+          <TouchableOpacity accessibilityLabel="Sign in with Google">
        	    <View>
 		<Image
         	style={styles.button}
