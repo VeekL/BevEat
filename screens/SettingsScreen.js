@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet,View, Text} from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
 
 export default class SettingsScreen extends React.Component {
@@ -10,7 +10,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return(
       <View style={styles.parallelContainer}>
-         <Text> asd</Text>  
+         <Text> Testing</Text>  
       </View>
     );
   }
