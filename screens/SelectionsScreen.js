@@ -8,69 +8,50 @@ export default class LinksScreen extends React.Component {
   };
   constructor(props){
      super(props);
+     this.directPayPage = this.directPayPage.bind(this);
+
   }
 
   render() {
     return (
-      <View>
-      <View style={styles.parallelContainer}>
-        <TouchableOpacity accessibilityLabel="Pre-Order">
-       	  <View>
-		    <Image
-        	  source={require('../assets/images/Preorder.png')}style={styles.rowImages}
-                />
-	      </View>
-    	</TouchableOpacity>
-      </View>
+        <View style={styles.container}>
+          <View style={{flex:0.8, alignItems:'flex-start'}}>
+            <Text style={{textAlign:'center',fontSize:50,color:'white'}}>&#8592;</Text>
+            </View>
+          <View style={{flex:0.2}}>
+          <Image source={require('../assets/images/Preorder.png')}style={styles.image}/>}
+          </View>
+        </View>
 
-      <View style={styles.parallelContainer}>
-        <TouchableOpacity accessibilityLabel="Direct Payment">
-       	  <View>
-		    <Image
-        	  source={require('../assets/images/DirectPay.png')}style={styles.rowImages}
-                />
-	      </View>
-    	</TouchableOpacity>
-      </View>
-
-      <View style={styles.parallelContainer}>
-        <TouchableOpacity accessibilityLabel="Display Balance">
-       	  <View>
-		    <Image
-        	  source={require('../assets/images/Balance.png')}style={styles.rowImages}
-                />
-	      </View>
-    	</TouchableOpacity>
-      </View>
-
-      <View style={styles.parallelContainer}>
-        <TouchableOpacity accessibilityLabel="Change Settings">
-       	  <View>
-		    <Image
-        	  source={require('../assets/images/Settings.png')}style={styles.rowImages}
-                />
-	      </View>
-    	</TouchableOpacity>
-      </View>
-      </View>
     );
   }
+  directPayPage(){
+     this.props.navigation.navigate('Amount');
+  }
+
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 20,
   },
   parallelContainer: {
     borderBottomWidth:6,
+    flex:0.25,
   },
   rowImages:{
-  	alignItems: 'center',
-  	width:400,
-  	height:155,
-  }
+  	flex:0.5,
+  	height:200,
+  },
+    image: {
+    resizeMode: 'contain',
+    height:380,
+
+  },
+  image2: {
+    resizeMode: 'stretch',
+    height:420,
+  },
 });

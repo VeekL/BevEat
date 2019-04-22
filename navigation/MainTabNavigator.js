@@ -9,8 +9,8 @@ import SettingsScreen from '../screens/SettingsScreen';
 import AmountScreen from '../screens/AmountScreen';
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-  Selections: SelectionsScreen,
+  Home: SelectionsScreen,
+  Selections: HomeScreen,
   Amount: AmountScreen,
   Settings: SettingsScreen,
 });
@@ -34,7 +34,7 @@ const SelectionsStack = createStackNavigator({
 });
 
 SelectionsStack.navigationOptions = {
-  tabBarLabel: 'E-Wallet',
+  tabBarLabel: 'SelectionsScreen',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -48,7 +48,7 @@ const AmountStack = createStackNavigator({
 });
 
 AmountStack.navigationOptions = {
-  tabBarLabel: 'E-Wallet',
+  tabBarLabel: 'DirectPay',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

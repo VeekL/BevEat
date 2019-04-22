@@ -1,19 +1,8 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Vibration,
-  Button,
+  Image,Platform,ScrollView,StyleSheet,Text,TouchableOpacity,View,Vibration,Button,Keyboard,TextInput,AppRegistry
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import { Keyboard, TextInput, AppRegistry } from 'react-native';
-import { Facebook } from 'expo';
-import { Haptic } from 'expo';
+import { Facebook,Haptic,WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -22,14 +11,13 @@ export default class HomeScreen extends React.Component {
   };
   constructor(props){
      super(props);
-     this._changeLocale = this._changeLocale.bind(this);
+     this.selectionPage = this.selectionPage.bind(this);
      this.state = { text: 'Useless Placeholder' };
   }
 
   render() {
     return (
       <View style={styles.container}>
-    
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -43,14 +31,14 @@ export default class HomeScreen extends React.Component {
           <View style={styles.bevEatAppContainer}>
             {this._BevEatApp()}
           </View>
-	<TouchableOpacity>
+	<TouchableOpacity accessibilityLabel="Login with Facebook" onPress={()=>this.selectionPage()}>
       	    <Image
         	style={styles.button}
         	source={require('../assets/images/Facebook.jpg')}style={styles.loginImage}
       	    />
     	  </TouchableOpacity>
         
-          <TouchableOpacity accessibilityLabel="Sign in with Google">
+          <TouchableOpacity accessibilityLabel="Sign in with Google" onPress={()=>this.selectionPage()}>
        	    <View>
 		<Image
         	style={styles.button}
@@ -58,14 +46,10 @@ export default class HomeScreen extends React.Component {
                 />
 	    </View>
     	  </TouchableOpacity>
-<TextInput
+      {false&& <TextInput
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
-      />
-
-    
-
+        value={this.state.text}/>}
      </View>
     );
   }
@@ -74,9 +58,8 @@ export default class HomeScreen extends React.Component {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
   }
-  _changeLocale(key){
-     this.props.screenProps.changeLocale(key);
-     this.props.navigation.navigate('Links');
+  selectionPage(){
+     this.props.navigation.navigate('Selections');
   }
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync('http://www.beveat.com/');
