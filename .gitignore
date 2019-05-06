@@ -1,5 +1,7 @@
 <<<<<<< HEAD
 
+.gitignore
+=======
 .expo/packager-info.json
 .expo/settings.json
 =======
@@ -8,3 +10,6 @@ origin/payment_attempt
 .expo/packager-info.json
 node_modules/.cache/@babel/register/.babel.7.4.3.development.json
 package-lock.json
+=======
+runner.ahk
+rerunner.ahk

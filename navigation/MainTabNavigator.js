@@ -7,11 +7,12 @@ import HomeScreen from '../screens/HomeScreen';
 import SelectionsScreen from '../screens/SelectionsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AmountScreen from '../screens/AmountScreen';
+import PreferenceScreen from '../screens/PreferenceScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Selections: SelectionsScreen,
-  Amount: AmountScreen,
+  Preference: PreferenceScreen,
   Settings: SettingsScreen,
 });
 
@@ -57,6 +58,20 @@ AmountStack.navigationOptions = {
   ),
 };
 
+const PreferenceStack = createStackNavigator({
+  Preference: PreferenceScreen,
+});
+
+PreferenceStack.navigationOptions = {
+  tabBarLabel: 'E-Wallet',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
@@ -74,6 +89,6 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   SelectionsStack,
-  AmountStack,
+  PreferenceStack,
   SettingsStack,
 });
